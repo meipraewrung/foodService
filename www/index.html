@@ -6,6 +6,13 @@
 
     <title>foodService</title>
 
+
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="img/favico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favico/favicon-16x16.png"> -->
+    
+    <meta name="google-signin-scope" content="profile email">
+
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
     <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">
@@ -29,8 +36,7 @@
     <!-- CODELAB: Add link rel manifest -->
     <link rel="manifest" href="/manifest.json">
 
-    <meta name="google-signin-scope" content="profile email">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <!--<script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js"></script>-->
@@ -58,7 +64,8 @@
                     <ons-page id="menubtn">
                         <ons-list-title>foodService</ons-list-title>
                         <ons-list>
-                            <ons-list-item tappable style="cursor: pointer" modifier="longdivider chevron">
+                            <ons-list-item tappable style="cursor: pointer" modifier="longdivider chevron"
+                                onclick="fn.load('home.html')">
                                 <div class="left">
                                     <ons-icon icon="fa-home" style="color: grey;"></ons-icon>
                                 </div>
@@ -78,6 +85,13 @@
                                 </div>
                                 <div class="center" id="logout">Sign in/Sign out</div>
                             </ons-list-item>
+                            <ons-list-item tappable style="cursor: pointer" modifier="longdivider chevron"
+                                onclick="fn.load('address.html')">
+                                <div class="left">
+                                    <ons-icon icon="fa-car" style="color: grey;"></ons-icon>
+                                </div>
+                                <div class="center" id="address">Address</div>
+                            </ons-list-item>
                         </ons-list>
                     </ons-page>
                 </ons-splitter-side>
@@ -86,12 +100,18 @@
         </ons-page>
     </template>
 
-    <script src="lib/onsen/js/onsenui.js"></script>
-    <script src="lib/jquery/jquery-3.4.1.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJKQnNW-VN7RJlBtp_kQrMsZS6ElNtdxk"></script>
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJKQnNW-VN7RJlBtp_kQrMsZS6ElNtdxk"></script>
+
+    <script src="lib/onsen/js/onsenui.js"></script>
+    <script src="lib/jquery/jquery-3.4.1.min.js"></script>
+    
     <script src="cordova.js"></script>
     <script src="js/app.js"></script>
 

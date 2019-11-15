@@ -14,19 +14,19 @@ firebase.initializeApp(firebaseConfig);
 //firebase.analytics();
 
 var db = firebase.firestore();
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     // User is signed in.
     // var displayName = user.displayName;
-     var email = user.email;
+    var email = user.email;
     // var emailVerified = user.emailVerified;
     // var photoURL = user.photoURL;
     // var isAnonymous = user.isAnonymous;
     // var uid = user.uid;
     // var providerData = user.providerData;
     // ...
-    console.log("user :",email, " signed in");
-    
+    console.log("user :", email, " signed in");
+
   } else {
     // User is signed out.
     // ...
@@ -59,10 +59,10 @@ document.addEventListener('init', function (event) {
       $("#content")[0].load("resturantMenu/RimThangChalong.html");
     });
 
-    
+
     $("#thaibtn").click(function () {
       $("#content")[0].load("resturantList/ThaiFood.html");
-    }); 
+    });
     $("#chinesebtn").click(function () {
       $("#content")[0].load("resturantList/ChineseFood.html");
     });
@@ -95,6 +95,48 @@ document.addEventListener('init', function (event) {
         </ons-carousel-recommend>`
         $("#carousel").append(recommend);
       });
+    });
+
+  }
+
+  if (page.id === 'addressPage') {
+    console.log("addressPage");
+
+    var lat, selectedLat;
+    var lng, selectedLng;
+    var onSuccess = function (position) {
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+      mapboxgl.accessToken = 'pk.eyJ1IjoicHJhZXdydW5nIiwiYSI6ImNrMmxhaDB2NTA1MXIzbXE3Ym1iYTNvODMifQ.cUt2D6DOC3GqyQ804XdWug';
+      var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        center: [lng, lat], // starting position [lng, lat]
+        zoom: 14 // starting zoom
+      });
+      var marker = new mapboxgl.Marker({
+        draggable: true
+      })
+        .setLngLat([lng, lat])
+        .addTo(map);
+      function onDragEnd() {
+        var lngLat = marker.getLngLat();
+        selectedLat = lngLat.lat;
+        selectedLng = lngLat.lng;
+        coordinates.style.display = 'block';
+        coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+      }
+      marker.on('dragend', onDragEnd);
+    };
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+      alert('code: ' + error.code + '\n' +
+        'message: ' + error.message + '\n');
+    }
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    $("#setaddress").click(function () {
+      ons.notification.alert("Delivery:" + selectedLat + "," + selectedLng);
     });
 
   }
@@ -217,7 +259,7 @@ document.addEventListener('init', function (event) {
     });
     $("#BackCatebtn").click(function () {
       $("#content")[0].load("resturantList/resturantListALL.html");
-    });  
+    });
     $("#BackHomebtn").click(function () {
       $("#content")[0].load("home.html");
     });
@@ -255,7 +297,7 @@ document.addEventListener('init', function (event) {
       $("#content")[0].load("home.html");
     });
   }
-  
+
   if (page.id === 'orderConfirmPage') {
     console.log("orderConfirmPage");
     $("#BackCatebtn").click(function () {
@@ -297,7 +339,7 @@ document.addEventListener('init', function (event) {
       console.log("gg");
       var provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().signInWithRedirect(provider);
-      firebase.auth().getRedirectResult().then(function(result) {
+      firebase.auth().getRedirectResult().then(function (result) {
         if (result.credential) {
           // This gives you a Google Access Token. You can use it to access the Google API.
           var token = result.credential.accessToken;
@@ -305,7 +347,7 @@ document.addEventListener('init', function (event) {
         }
         // The signed-in user info.
         var user = result.user;
-      }).catch(function(error) {
+      }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -319,7 +361,7 @@ document.addEventListener('init', function (event) {
 
     $("#signinbtn").click(function () {
       var email = $("#email").val();
-      var password = $("#password").val  ();
+      var password = $("#password").val();
       firebase.auth().signInWithEmailAndPassword(email, password).then(function () {
         content.load('home.html');
       }).catch(function (error) {
@@ -472,7 +514,7 @@ document.addEventListener('init', function (event) {
     var price = Number($(this).data('price'));
     shoppingCart.addItemToCart(name, price, 1);
     displayCart();
-    });
+  });
   // Clear items
   $('.clear-cart').click(function () {
     shoppingCart.clearCart();
