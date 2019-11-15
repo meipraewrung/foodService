@@ -212,7 +212,7 @@
 
 #map { position:absolute; top:0; bottom:0; width:100%; }
 .coordinates {
-  background: rgba(0,0,0,0.5);
+  background: rgba(255, 0, 0, 0.5);
   color: #fff;
   position: absolute;
   bottom: 40px;

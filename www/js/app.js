@@ -313,6 +313,9 @@ document.addEventListener('init', function (event) {
     $("#BackHomebtn").click(function () {
       $("#content")[0].load("home.html");
     });
+    $("#GOAddress").click(function () {
+      $("#content")[0].load("address.html");
+    });
   }
 
   if (page.id === 'registerPage') {
