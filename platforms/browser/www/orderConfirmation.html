@@ -1,0 +1,40 @@
+<ons-page id="orderConfirmPage">
+    <!--toolbar-->
+    <ons-toolbar>
+        <div class="left">
+            <ons-toolbar-button id="BackCatebtn">
+                <ons-icon icon="fa-arrow-left">Back</ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="center">foodService</div>
+        <div class="right">
+            <ons-toolbar-button id="BackHomebtn">
+                <ons-icon icon="md-home"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <br>
+    </ons-toolbar>
+    <!--OrderedItem-->
+    <div class="category_content">
+        <ons-row class="row justify-content-center" style="background-color: rgba(252, 235, 0, 0.781);">
+            <ons-card style="width: 100%;">
+                <!--name-->
+                <!-- Modal -->
+                <div class="modal-header">
+                    <p class="modal-title" id="exampleModalLabel" style="text-align: center"><b>Ordered Item</b></p>
+                </div>
+                <center>
+                    <div class="modal-body">
+                        <table class="show-cart table"></table>
+                        <div>ราคารวม : <span class="total-cart"></span> บาท</div>
+                    </div>
+                </center>
+                <div style="text-align: center">
+                    <!-- <ons-button style="background-color:crimson" data-dismiss="modal">Close</ons-button> -->
+                    <ons-button class="ordernowbtn" style="background-color: rgb(17, 145, 250)">Order now</ons-button>
+                    <ons-button class="clear-cart" style="background-color: rgb(255, 0, 0)">Clear Order</ons-button>
+                </div>
+            </ons-card>
+        </ons-row>
+    </div>
+</ons-page>
