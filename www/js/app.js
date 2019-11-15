@@ -102,6 +102,13 @@ document.addEventListener('init', function (event) {
   if (page.id === 'addressPage') {
     console.log("addressPage");
 
+    $("#BackOrderbtn").click(function () {
+      $("#content")[0].load("orderConfirmation.html");
+    });
+    $("#BackHomebtn").click(function () {
+      $("#content")[0].load("home.html");
+    });
+
     var lat, selectedLat;
     var lng, selectedLng;
     var onSuccess = function (position) {
